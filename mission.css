@@ -1,0 +1,235 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+background:#eef3f8;
+color:#333;
+padding-bottom:40px;
+}
+
+.topBar{
+position:sticky;
+top:0;
+z-index:999;
+background:#fff;
+padding:18px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+border-bottom-left-radius:20px;
+border-bottom-right-radius:20px;
+}
+
+.employeeRow,
+.dateRow,
+.missionRow,
+.counterRow{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+gap:10px;
+}
+
+.employee{
+font-size:20px;
+font-weight:800;
+}
+
+.online{
+font-weight:700;
+color:#1f9d55;
+}
+
+.speedRow{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:15px;
+}
+
+.speedBox{
+background:#f6f8fc;
+padding:12px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.speedBox b{
+display:block;
+margin-top:8px;
+font-size:24px;
+color:#4f6cff;
+}
+
+.progressTitle{
+font-weight:700;
+margin-bottom:8px;
+}
+
+.progress{
+height:12px;
+background:#dbe4ee;
+border-radius:50px;
+overflow:hidden;
+}
+
+.progressFill{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#25c6ff,#4f6cff,#7b3ff2);
+transition:.5s;
+}
+
+.progressText{
+text-align:center;
+margin-top:8px;
+font-weight:800;
+font-size:18px;
+}
+
+.counterRow div{
+flex:1;
+text-align:center;
+background:#f7f9fc;
+padding:12px;
+border-radius:14px;
+}
+
+.counterRow b{
+display:block;
+font-size:24px;
+color:#4f6cff;
+margin-bottom:5px;
+}
+
+.missionCard,
+.tableCard{
+background:#fff;
+margin:18px;
+padding:18px;
+border-radius:20px;
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.missionCard h2,
+.tableCard h2{
+margin-bottom:20px;
+color:#4f6cff;
+text-align:center;
+}
+
+label{
+display:block;
+margin-top:14px;
+margin-bottom:6px;
+font-weight:700;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+border:2px solid #d8e1eb;
+border-radius:12px;
+font-size:15px;
+outline:none;
+background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#4f6cff;
+}
+
+.tableResponsive{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:1500px;
+}
+
+th{
+background:#4f6cff;
+color:white;
+padding:14px;
+font-size:15px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #ececec;
+background:white;
+}
+
+tr:hover td{
+background:#f6f9ff;
+}
+
+button{
+background:#4f6cff;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:10px;
+cursor:pointer;
+font-size:15px;
+font-weight:700;
+}
+
+button:hover{
+background:#3655dd;
+}
+
+.mapBtn{
+background:#1d9bf0;
+}
+
+.site-work td{
+background:#dff7df !important;
+}
+
+.site-stop td{
+background:#ffdede !important;
+}
+
+.site-clean td{
+background:#ffe8c6 !important;
+}
+
+.site-problem td{
+background:#d6b08d !important;
+color:white;
+}
+
+.site-empty td{
+background:#b8b8b8 !important;
+color:white;
+}
+
+@media(max-width:768px){
+
+.speedRow{
+grid-template-columns:1fr;
+}
+
+.employeeRow,
+.dateRow,
+.missionRow,
+.counterRow{
+flex-direction:column;
+}
+
+.topBar{
+padding:15px;
+}
+
+}

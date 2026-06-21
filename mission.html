@@ -1,1 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>المهمة الميدانية</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+
+background:#eef2f7;
+
+}
+
+.header{
+
+background:linear-gradient(135deg,#44d4ff,#5b72ff,#7b3ff2);
+
+padding:25px;
+
+color:white;
+
+border-bottom-left-radius:30px;
+
+border-bottom-right-radius:30px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.topInfo{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+.timeBox{
+
+font-size:22px;
+
+font-weight:800;
+
+}
+
+.dateBox{
+
+font-size:18px;
+
+font-weight:700;
+
+}
+
+.cards{
+
+width:94%;
+
+margin:20px auto;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:18px;
+
+padding:18px;
+
+text-align:center;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.cardTitle{
+
+font-size:18px;
+
+font-weight:700;
+
+color:#555;
+
+margin-bottom:10px;
+
+}
+
+.cardValue{
+
+font-size:30px;
+
+font-weight:800;
+
+background:linear-gradient(90deg,#44d4ff,#5b72ff,#7b3ff2);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="topInfo">
+
+<div class="timeBox" id="clock">
+
+00:00:00 PM
+
+</div>
+
+<div class="dateBox" id="today">
+
+...
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cards"><div class="card">
+
+<div class="cardTitle">
+
+وقت بداية المهمة
+
+</div>
+
+<div class="cardValue" id="startTime">
+
+--
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="cardTitle">
+
+وقت نهاية المهمة
+
+</div>
+
+<div class="cardValue" id="endTime">
+
+--
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="cardTitle">
+
+مدة المهمة
+
+</div>
+
+<div class="cardValue" id="duration">
+
+00:00:00
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="cardTitle">
+
+نسبة الإنجاز
+
+</div>
+
+<div class="cardValue" id="progress">
+
+0%
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const now=new Date();
+
+document.getElementById("startTime").innerHTML=
+now.toLocaleTimeString('ar-SA',{
+hour:'2-digit',
+minute:'2-digit',
+second:'2-digit',
+hour12:true
+});
+
+setInterval(()=>{
+
+const d=new Date();
+
+document.getElementById("clock").innerHTML=
+d.toLocaleTimeString('ar-SA',{
+hour:'2-digit',
+minute:'2-digit',
+second:'2-digit',
+hour12:true
+});
+
+document.getElementById("today").innerHTML=
+d.toLocaleDateString('ar-SA',{
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric'
+});
+
+},1000);
+
+</script>
+
+</body>
+
+</html>

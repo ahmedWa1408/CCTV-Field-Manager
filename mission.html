@@ -5,7 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>المهمة الميدانية</title>
 
@@ -15,249 +15,526 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-
-background:#eef2f7;
-
-}
-
-.header{
-
-background:linear-gradient(135deg,#44d4ff,#5b72ff,#7b3ff2);
-
-padding:25px;
-
-color:white;
-
-border-bottom-left-radius:30px;
-
-border-bottom-right-radius:30px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-}
-
-.topInfo{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-flex-wrap:wrap;
-
-gap:15px;
-
-}
-
-.timeBox{
-
-font-size:22px;
-
-font-weight:800;
-
-}
-
-.dateBox{
-
-font-size:18px;
-
-font-weight:700;
-
-}
-
-.cards{
-
-width:94%;
-
-margin:20px auto;
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:15px;
-
-}
-
-.card{
-
-background:white;
-
-border-radius:18px;
-
-padding:18px;
-
-text-align:center;
-
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-}
-
-.cardTitle{
-
-font-size:18px;
-
-font-weight:700;
-
-color:#555;
-
-margin-bottom:10px;
-
-}
-
-.cardValue{
-
-font-size:30px;
-
-font-weight:800;
-
-background:linear-gradient(90deg,#44d4ff,#5b72ff,#7b3ff2);
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
-}
-
-</style>
+<link rel="stylesheet" href="mission.css">
 
 </head>
 
 <body>
 
-<div class="header">
+<!-- الشريط العلوي -->
 
-<div class="topInfo">
+<div class="topBar">
 
-<div class="timeBox" id="clock">
+<div class="employeeRow">
 
-00:00:00 PM
+<div class="employee">
 
-</div>
+👤 <span id="employeeName">
 
-<div class="dateBox" id="today">
+اختر اسم المشغل
 
-...
-
-</div>
+</span>
 
 </div>
 
-</div>
+<div class="online">
 
-<div class="cards"><div class="card">
+🟢 <span id="connectionStatus">
 
-<div class="cardTitle">
+متصل
 
-وقت بداية المهمة
-
-</div>
-
-<div class="cardValue" id="startTime">
-
---
+</span>
 
 </div>
 
 </div>
 
-<div class="card">
+<div class="dateRow">
 
-<div class="cardTitle">
+<div>
 
-وقت نهاية المهمة
+🕒
 
-</div>
-
-<div class="cardValue" id="endTime">
-
---
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="cardTitle">
-
-مدة المهمة
-
-</div>
-
-<div class="cardValue" id="duration">
+<span id="liveClock">
 
 00:00:00
 
+</span>
+
+</div>
+
+<div>
+
+📅
+
+<span id="liveDate">
+
+...
+
+</span>
+
 </div>
 
 </div>
 
-<div class="card">
+<div class="speedRow">
 
-<div class="cardTitle">
+<div class="speedBox">
+
+🚗
+
+<br>
+
+الحالية
+
+<b id="currentSpeed">
+
+0
+
+</b>
+
+</div>
+
+<div class="speedBox">
+
+📈
+
+<br>
+
+الأعلى
+
+<b id="maxSpeed">
+
+0
+
+</b>
+
+</div>
+
+<div class="speedBox">
+
+📊
+
+<br>
+
+المتوسط
+
+<b id="avgSpeed">
+
+0
+
+</b>
+
+</div>
+
+</div>
+
+<div class="missionRow">
+
+<div>
+
+⏱️ بداية المهمة
+
+<b id="missionStart">
+
+--
+
+</b>
+
+</div>
+
+<div>
+
+🏁 نهاية المهمة
+
+<b id="missionEnd">
+
+--
+
+</b>
+
+</div>
+
+</div>
+
+<div class="progressTitle">
 
 نسبة الإنجاز
 
 </div>
 
-<div class="cardValue" id="progress">
+<div class="progress">
+
+<div class="progressFill"
+
+id="progressFill">
+
+</div>
+
+</div>
+
+<div class="progressText">
+
+<span id="progressPercent">
 
 0%
 
+</span>
+
+</div>
+
+<div class="counterRow">
+
+<div>
+
+📍
+
+<b id="totalSites">
+
+30
+
+</b>
+
+إجمالي
+
+</div>
+
+<div>
+
+✅
+
+<b id="finishedSites">
+
+0
+
+</b>
+
+منجز
+
+</div>
+
+<div>
+
+⏳
+
+<b id="remainingSites">
+
+30
+
+</b>
+
+متبقي
+
 </div>
 
 </div>
 
 </div>
 
-<script>
+<!-- بيانات المهمة -->
 
-const now=new Date();
+<div class="missionCard">
 
-document.getElementById("startTime").innerHTML=
-now.toLocaleTimeString('ar-SA',{
-hour:'2-digit',
-minute:'2-digit',
-second:'2-digit',
-hour12:true
-});
+<h2>
 
-setInterval(()=>{
+بيانات المهمة
 
-const d=new Date();
+</h2>
 
-document.getElementById("clock").innerHTML=
-d.toLocaleTimeString('ar-SA',{
-hour:'2-digit',
-minute:'2-digit',
-second:'2-digit',
-hour12:true
-});
+<label>
 
-document.getElementById("today").innerHTML=
-d.toLocaleDateString('ar-SA',{
-weekday:'long',
-year:'numeric',
-month:'long',
-day:'numeric'
-});
+اسم المشغل
 
-},1000);
+</label>
 
-</script>
+<input
+type="text"
+id="operatorName"
+placeholder="اكتب أول حرف من الاسم">
 
-</body>
+<label>
 
-</html>
+رقم ID
+
+</label>
+
+<input
+type="text"
+id="operatorID"
+readonly>
+
+<label>
+
+رقم السيارة
+
+</label>
+
+<input
+type="text"
+id="carNumber">
+
+<label>
+
+رقم اللابتوب
+
+</label>
+
+<input
+type="text"
+id="laptopNumber">
+
+<label>
+
+عدد الفلاشات
+
+</label>
+
+<select id="flashCount">
+
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+
+</select>
+
+<label>
+
+عدد الهارديسكات
+
+</label>
+
+<select id="hardCount">
+
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+
+</select>
+
+</div><!-- جدول المواقع -->
+
+<div class="tableCard">
+
+<h2>
+
+جدول مواقع الخطة
+
+</h2>
+
+<div class="tableResponsive">
+
+<table id="missionTable">
+
+<thead>
+
+<tr>
+
+<th>رمز الموقع</th>
+
+<th>نوع التخزين</th>
+
+<th>فتح الموقع</th>
+
+<th>الوصول</th>
+
+<th>حالة الموقع</th>
+
+<th>بداية المجلد</th>
+
+<th>نهاية المجلد</th>
+
+<th>ساعات الرصد</th>
+
+<th>XML</th>
+
+<th>الصور</th>
+
+<th>الملاحظات</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>QSMSM101</td>
+
+<td>
+
+<select>
+
+<option>فلاش</option>
+
+<option>هارديسك</option>
+
+</select>
+
+</td>
+
+<td>
+
+<button class="mapBtn">
+
+📍 فتح
+
+</button>
+
+</td>
+
+<td>
+
+<select class="arrivalStatus">
+
+<option>بانتظار الوصول</option>
+
+<option>داخل النطاق 5 كم</option>
+
+<option>خارج النطاق 5 كم</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select class="siteStatus">
+
+<option>اختر</option>
+
+<option value="work">يعمل</option>
+
+<option value="stop">لا يعمل</option>
+
+<option value="clean">يعمل ولا يوجد مخالفات</option>
+
+<option value="problem">لا يعمل ويوجد مخالفات</option>
+
+<option value="empty">لا يعمل ولا يوجد مخالفات</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="datetime-local">
+
+</td>
+
+<td>
+
+<input type="datetime-local">
+
+</td>
+
+<td>
+
+<input
+type="text"
+readonly
+placeholder="تحسب تلقائياً">
+
+</td>
+
+<td>
+
+<select>
+
+<option>يوجد</option>
+
+<option>لا يوجد</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="file" accept="image/*">
+
+</td>
+
+<td>
+
+<textarea
+rows="2"
+placeholder="اكتب الملاحظات..."></textarea>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- اعتماد المشرف -->
+
+<div class="missionCard">
+
+<h2>
+
+اعتماد المهمة
+
+</h2>
+
+<label>
+
+مشرف الفترة
+
+</label>
+
+<input
+type="text"
+id="supervisorName"
+placeholder="اختر المشرف">
+
+<label>
+
+رقم ID
+
+</label>
+
+<input
+type="text"
+id="supervisorID"
+readonly>
+
+<label>
+
+وقت الاعتماد
+
+</label>
+
+<input
+type="text"
+id="approveTime"
+readonly>
+
+<label>
+
+تاريخ الاعتماد
+
+</label>
+
+<input
+type="text"
+id="approveDate"
+readonly>
+
+<button id="approveButton">
+
+اعتماد المهمة
+
+</button>
+
+</div>
